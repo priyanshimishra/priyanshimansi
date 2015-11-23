@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<time.h>
+#include<windows.h>
+
+
+void genHtmlFileName(char *s, char* d);
+void launchExtProg(char []);
+void launchGcc(char[]);
+void dispFile(char [], char[]);
+char getChoice();
+void  showSplash();
+void sleep(unsigned int);
+int convertScriptToHtml(char*);
+
+
+int main()
+{
+ char choice;
+ char file[20];
+ char scriptBlock[50]="<script language=geu>\n\n\n\n\n\n\n\n\n\n\n</script>";
+
+ FILE *fp;
+
+ system("COLOR 21");
+
+ showSplash();
+
+ do
+ {
+	choice = getChoice();
+
+	switch(choice)
+	{
+		case '1':
+					printf("\nEnter File Name For Creating Algo Script: ");
+					scanf("%s",file);
+					fp = fopen(file,"w");
+					fputs(scriptBlock,fp);
+					fclose(fp);
+                    launchExtProg(file);
+					break;
+		case '2':
+					printf("\nEnter File Name For Viewing Algo Script: ");
+					scanf("%s",file);
+                    launchExtProg(file);
+					break;
+		case '3':
+					printf("\nEnter Algo Script File Name : ");
+					scanf("%s",file);
+					if(convertScriptToHtml(file)!=0)
+                    {
+
+                    }
+					break;
