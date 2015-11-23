@@ -1,0 +1,60 @@
+		case '4':
+					printf("\nEnter HTML File Name For Viewing: ");
+					scanf("%s",file);
+					dispFile(file, "Generated HTML");
+					break;
+
+		case '5':
+                    strcpy(file,"help.txt");
+                    launchExtProg(file);
+					//ShellExecute(NULL, "open", "help.txt", NULL, NULL, SW_SHOWNORMAL);
+					break;
+		case '6':
+					break;
+		default:
+					printf("\n\nERROR: Invalid Option Selected");
+					break;
+	}
+	printf("\n\nPress any key to continue.............");
+	getch();
+
+ }while(choice!='6');
+ return 0;
+}
+
+void  showSplash()
+{
+	int s=2000;
+	printf("\n\n\n\n\n\n");
+	printf("\t\t\tWELCOME TO Algo Script to HTML Converter");
+	printf("\n\n\n\n\n\n");
+	printf("\t\t\tDeveloped BY:");
+	printf("\n\t\t\t\t\t MANSI");
+	printf("\n\t\t\t\t\t PRIYANSHI");
+	sleep(s);
+}
+
+void genHtmlFileName(char *s, char* d)
+{
+	int i,len;
+	len=strlen(s);
+	for(i=0;i<len;i++)
+	{
+		if(s[i]=='.')break;
+			d[i]=s[i];
+	}
+	d[i]='\0';
+	strcat(d,".HTML");
+}
+
+int convertScriptToHtml(char file[])
+{
+	FILE *fs,*ft;
+	char dfile[20];
+	char line [200];
+	char temp [200];
+	char *p;
+	int loope=0,loops=0,validStart=0,validEnd=0;
+
+     //extract file name
+     p = strstr(file,".geu");
