@@ -1,0 +1,73 @@
+if(p!=NULL)
+                {
+                    if(!validStart)
+                    {
+                        printf("\nERROR : Invalid Script File Format");
+                        return 0;
+                    }
+                    strcpy(temp,"printf");
+                    strcat(temp,p+6);
+                    fputs (temp, ft);
+                    fputs ("printf(\"\n\");", ft);
+                    continue;
+                }
+				p = strstr(line,"show");
+				if(p!=NULL)
+                {
+                    if(!validStart)
+                    {
+                        printf("\nERROR : Invalid Script File Format");
+                        return 0;
+                    }
+
+                    strcpy(temp,"printf");
+                    strcat(temp,p+4);
+                    fputs (temp, ft);
+                    continue;
+                }
+
+				p = strstr(line,"#forend");
+				if(p!=NULL)
+                {
+                    if(!validStart)
+                    {
+                        printf("\nERROR : Invalid Script File Format");
+                        return 0;
+                    }
+
+                    loope++;
+                    if(loope==2)
+                    {
+                        strcpy(temp,"fputs (\"<BR><H1>AFTER PASS</H1><BR>\",fp);");
+                        strcat(temp, "for(k=0;k<5;k++){");
+                        strcat(temp,"fputs ( \"&nbsp;&nbsp;&nbsp;&nbsp;\",fp);");
+                        strcat(temp,"fputs (itoa(arr[k],buf,10),fp);");
+                        strcat(temp, "}");
+                        fputs (temp, ft);
+
+                    }
+                    strcpy(temp,"}");
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#whilend");
+				if(p!=NULL)
+                {
+                    if(!validStart)
+                    {
+                        printf("\nERROR : Invalid Script File Format");
+                        return 0;
+                    }
+
+                    strcpy(temp,"}");
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#doend");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"}");
+                    fputs (temp, ft);
+                    continue;
+                }
+				
