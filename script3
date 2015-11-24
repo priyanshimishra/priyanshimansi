@@ -1,0 +1,56 @@
+
+     if(p==NULL)
+     {
+         printf("\n ERROR : Invalid File Name");
+         return 0;
+     }
+     else
+     {
+         genHtmlFileName(file, dfile);
+     }
+
+	fs = fopen(file,"r");
+
+	if(fs==NULL)
+	{
+				printf("\nERROR: in reading %s file", file);
+				return 0;
+	}
+
+		ft = fopen("temp.c", "w");
+
+		if(ft==NULL)
+		{
+
+				printf("\nERROR: in opening temporary file");
+				fclose(fs);
+				return 0;
+		}
+
+		else
+		{
+			while ( fgets ( line, sizeof(line), fs ) != NULL )
+			{
+
+				p = strstr(line,"geu");
+				if(p!=NULL)
+                {
+                    validStart=1;
+                    strcpy(temp,"#include<stdio.h>\n#include<stdlib.h>\n");
+                    fputs (temp, ft);
+                    strcpy(temp,"void main(){\n FILE * fp;\n char buf[5];\n");
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"</script>");
+				if(p!=NULL)
+                {
+                    validEnd=1;
+                    strcpy(temp,"fputs ( \"</BODY></HTML>\", fp);");
+                    strcat(temp,"fclose(fp);");
+                    strcat(temp,"}");
+                    fputs (temp, ft);
+                    break;
+                }
+
+				p = strstr(line,"showlc");
