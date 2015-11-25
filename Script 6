@@ -1,0 +1,47 @@
+				if(p!=NULL)
+                {
+                    strcpy(temp,"if");
+                    strcat(temp,p+3);
+                    strcat(temp,"{");
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#else");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"else");
+                    strcat(temp,p+5);
+                    strcat(temp,"{");
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#i");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"int ");
+                    strcat(temp,p+2);
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#f");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"float ");
+                    strcat(temp,p+2);
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#c");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"char ");
+                    strcat(temp,p+2);
+                    fputs (temp, ft);
+                    continue;
+                }
+
+                fputs (line, ft);
+			}
+			fclose(ft);
+		}
+		fclose(fs);
