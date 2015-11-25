@@ -1,0 +1,57 @@
+					p = strstr(line,"#ifend");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"}");
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#elsend");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"}");
+                    fputs (temp, ft);
+                    continue;
+                }
+
+				p = strstr(line,"#for");
+				if(p!=NULL)
+                {
+                    loops++;
+
+                    if(loops==1)
+                    {
+                        strcpy(temp,"fp = fopen(");
+                        strcat(temp,"\"");
+                        strcat(temp,dfile);
+                        strcat(temp,"\"");
+                        strcat(temp,",\"w\");");
+                        //strcat(temp,"fputs ( \"<HTML><HEAD><TITLE>Step by Step Execution of Algo</TITLE></HEAD><BODY bgcolor=pink>\", fp);");
+                        strcat(temp,"fputs ( \"<HTML><HEAD><TITLE>Step by Step Execution of Algo</TITLE></HEAD><BODY bgcolor=pink>\"");
+                        strcat(temp,", fp);");
+                        fputs (temp, ft);
+                    }
+                    strcpy(temp,"for");
+                    strcat(temp,p+4);
+                    strcat(temp,"{");
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#while");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"while");
+                    strcat(temp,p+6);
+                    strcat(temp,"{");
+                    fputs (temp, ft);
+                    continue;
+                }
+				p = strstr(line,"#do");
+				if(p!=NULL)
+                {
+                    strcpy(temp,"do");
+                    strcat(temp,p+3);
+                    strcat(temp,"{");
+                    fputs (temp, ft);
+                    continue;
+                }
+	  			p = strstr(line,"#if");
