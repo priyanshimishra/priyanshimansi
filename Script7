@@ -1,0 +1,49 @@
+		launchGcc(" temp.c -o temp.exe");
+        launchExtProg("temp.exe");
+        launchExtProg(dfile);
+	return 1;
+}
+void sleep(unsigned int m)
+
+{
+ clock_t goal = m+clock();
+ while(goal>clock());
+}
+char getChoice()
+{
+	char choice;
+
+	system("cls");//clrscr();
+	printf("\n*************** MENU ***************\n");
+	printf("\n 1 : Create Algo Script");
+	printf("\n 2 : View Algo Script");
+	printf("\n 3 : Execute Algo Script");
+	printf("\n 4 : Show HTML Code Generated");
+	printf("\n 5 : Help Me");
+	printf("\n 6 : Exit");
+
+	printf("\n************************************");
+	printf("\n\nEnter your choice : ");
+	choice = getche();
+
+	printf("\n************************************");
+
+	return choice;
+}
+
+    void launchGcc(char param[])
+    {
+        SHELLEXECUTEINFO ShExecInfo = {0};
+        ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+        ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
+        ShExecInfo.hwnd = NULL;
+        ShExecInfo.lpVerb = NULL;
+        ShExecInfo.lpFile = "gcc.exe";
+        ShExecInfo.lpParameters = param;
+        ShExecInfo.lpDirectory = "";
+        ShExecInfo.nShow = SW_SHOW;
+        ShExecInfo.hInstApp = NULL;
+        ShellExecuteEx(&ShExecInfo);
+        WaitForSingleObject(ShExecInfo.hProcess,INFINITE);
+        
+    }
